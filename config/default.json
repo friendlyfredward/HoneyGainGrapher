@@ -2,7 +2,7 @@
   "authToken": "<Insert Your Bearer Token>",
   "pingInterval": 3600,
   "startOnTheHour": true,
-  "graphTitle": "Honey Gain Devices Delta",
+  "graphTitle": "Hourly Earnings Graph",
   "enableDashboard": true,
   "enableGraph": true,
   "useHTTPAuth": false,
