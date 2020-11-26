@@ -52,31 +52,6 @@ function exportToCsv(table){
     }
     
 
-function closeSidebar(){
-    if(sidebarWidth>0){
-        sidebarWidth-=5
-        menuSidebar.style.width=sidebarWidth+"px"
-        setTimeout(closeSidebar,1)
-        let pages = document.querySelectorAll(".page");
-        for (let i = 0; i < pages.length; i++) {
-            pages[i].style.opacity = 1-(sidebarWidth/300);
-        }
-    }
-    menuSidebar.style.visibility=sidebarWidth>0?"visible":"hidden"
-}
-function openSidebar(){
-    if(sidebarWidth<150){
-        sidebarWidth+=5
-        menuSidebar.style.width=sidebarWidth+"px"
-        setTimeout(openSidebar,1)
-        let pages = document.querySelectorAll(".page");
-        for (let i = 0; i < pages.length; i++) {
-            pages[i].style.opacity = 1-(sidebarWidth/300);
-        }
-    }
-    menuSidebar.style.visibility=sidebarWidth>0?"visible":"hidden"
-}
-
 
 
 var lastElement={}

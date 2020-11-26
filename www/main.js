@@ -26,10 +26,27 @@ for (var x = 0; x < 2; x++) {
   endDate[x].value = unixToYYYYMMDD(new Date().getTime() + oneDay * 1000);
 }
 
-getData({ action: "getbalance", echo: "balance" });
-getData({ action: "getstarttime", echo: "starttime" });
-getData({ action: "getidmap", echo: "idmap" });
+refresh();
 onDateChangeTrans(startDateTrans.value, endDateTrans.value);
+
+setInterval(refresh, 300000);
+
+function refresh() {
+	getData({ action: "getbalance", echo: "balance" });
+	getData({ action: "getstarttime", echo: "starttime" });
+	getData({ action: "getidmap", echo: "idmap" });
+}
+
+function updateTime(date) {
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var ampm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12;
+  hours = hours ? hours : 12;
+  minutes = minutes < 10 ? '0'+minutes : minutes;
+  var strTime = hours + ':' + minutes + ' ' + ampm;
+  return " &bull; Last updated " + strTime;
+}
 
 function parseRes(res) {
   jsonData = JSON.parse(res);
@@ -37,19 +54,16 @@ function parseRes(res) {
     if (
       jsonData.req.data.payout != undefined) {
       balCredits=jsonData.req.data.payout.credits
-      currentBalance.innerHTML = jsonData.req.data.payout.credits+'<font size="5"> Credits</font>';
-      currentBalanceGB.innerHTML = (
-        jsonData.req.data.payout.credits / 100
-      ).toFixed(2)+'<font size="5"> GB</font>';
+      currentBalance.innerHTML = jsonData.req.data.payout.credits;
       currentBalanceUSD.innerText =
         "$" + jsonData.req.data.payout.usd_cents / 100;
       balUSD = jsonData.req.data.payout.usd_cents / 100;
       calcNextPayout();
       balRealtime=jsonData.req.data.realtime.credits
-      toDayBalance.innerHTML=balRealtime.toFixed(2)+'<font size="5"> Credits</font>'
+      toDayBalance.innerHTML=balRealtime.toFixed(2);
       toDayBalanceUSD.innerHTML='$'+(balRealtime/1000).toFixed(2)
-      toDayRate.innerHTML='$'+(balRealtime/1000/getHoursFromMidnight()).toFixed(2)
       getData({ action: "getlastbalance", echo: "lastbalance" });
+	  document.getElementById("updateInfo").innerHTML = updateTime(new Date);
     }
   }
   if(jsonData.echo=="lastbalance"){
@@ -63,10 +77,10 @@ function parseRes(res) {
       diffBal2=balRealtime
     }
     toHourBalanceUSD.innerText='$'+(diffBal/1000).toFixed(2)
-    toHourBalance.innerHTML=diffBal.toFixed(2)+'<font size="5"> Credits</font>'
+    toHourBalance.innerHTML=diffBal.toFixed(2);
     lastHourBalanceUSD.innerText='$'+(diffBal2/1000).toFixed(2)
-    lastHourBalance.innerHTML=diffBal2.toFixed(2)+'<font size="5"> Credits</font>'
-    lastHourRate.innerHTML='$'+(diffBal2/1000*24).toFixed(2)
+    lastHourBalance.innerHTML=diffBal2.toFixed(2);
+    lastHourRate.innerHTML='$'+(diffBal2/1000*24).toFixed(2)+'<font size="5">/day</font>';
   }
   if (jsonData.echo == "sevenday") {
     last7initial = jsonData.balance;
@@ -82,15 +96,15 @@ function parseRes(res) {
   }
   if (jsonData.echo == "now") {
     deviceBalance = jsonData.balance;
+	last7Total = 0;
     nowReceived = true;
     for (x in last7initial) {
       last7Total += deviceBalance[x].credits - last7initial[x];
-      last7Balance.innerHTML = last7Total.toFixed(2)+'<font size="5"> Credits</font>';
+      last7Balance.innerHTML = last7Total.toFixed(2);
       last7BalanceUSD.innerText = "$" + (last7Total / 1000).toFixed(2);
       //last7BalanceGB.innerText = (last7Total / 100).toFixed(2);
       last7Rate.innerText = "$" + (last7Total / 1000 / 7).toFixed(2);
     }
-    calcNextPayout();
   }
   if (jsonData.echo == "deviceoverview") {
     deviceOverviewInitial = jsonData.balance;
@@ -323,23 +337,7 @@ function updateTables() {
 
   var earningUserNum = 0;
   var hgActiveUsersNum = 0;
-  for (x in userData) {
-    hgActiveUsersNum++;
-    var userRow = useroverviewTable.insertRow(1);
-    userRow.insertCell(0).innerText = x;
-    userRow.insertCell(1).innerText = userData[x].deviceCount;
-    userRow.insertCell(2).innerText = userData[x].earningDeviceCount;
-    userRow.insertCell(3).innerText = userData[x].activeDeviceCount;
-    userRow.insertCell(4).innerText = userData[x].creditsEarned.toFixed(2);
-    userRow.insertCell(5).innerText = userData[x].totalCredits.toFixed(2);
-    userRow.insertCell(6).innerText =
-      "$" + (userData[x].creditsEarned / 1000).toFixed(2);
-    userRow.insertCell(7).innerText =
-      "$" + (userData[x].totalCredits / 1000).toFixed(2);
-    earningUserNum += userData[x].earningDeviceCount > 0 ? 1 : 0;
-  }
   //overview card
-  hgActiveUsers.innerText = hgActiveUsersNum;
   earningUsers.innerText = earningUserNum;
   earningPerUser.innerText = (earningsTotal / earningUserNum / 1000).toFixed(3);
   sortTable(
@@ -354,8 +352,7 @@ function updateTables() {
 function calcNextPayout() {
   if (balUSD != undefined && nowReceived) {
     nextPayout.innerHTML= Math.max(
-      ((7 / (last7Total / 1000)) * (20 - balUSD)).toFixed(2),
-      0
+      ((7 / (last7Total / 1000)) * (20 - balUSD)).toFixed(0)
     )+'<font size="5"> Days</font>';
     startDate[0].onchange();
   }
@@ -363,56 +360,38 @@ function calcNextPayout() {
 
 window.onhashchange = function () {
   switch (document.location.hash.replace("#", "").split("?")[0]) {
-    case "overview":
-      closeSidebar();
-      overviewPage.style.visibility = "visible";
-      graphPage.style.visibility = "hidden";
-      devicesPage.style.visibility = "hidden";
-      usersPage.style.visibility = "hidden";
-      transactionPage.style.visibility = "hidden";
-      pagelable.innerText = "Overview";
-      break;
-    case "sidebar":
-      openSidebar();
+    case "dash":
+      overviewPage.style.display = "inline-block";
+      devicesPage.style.display = "none";
+      usersPage.style.display = "none";
+      transactionPage.style.display = "none";
+      pagelable.innerText = "Dashboard";
+	  dashboardBtn.classList.add('active');
+	  devicesBtn.classList.remove('active');
+	  transactionsBtn.classList.remove('active');
       break;
     case "devices":
-      closeSidebar();
-      overviewPage.style.visibility = "hidden";
-      graphPage.style.visibility = "hidden";
-      devicesPage.style.visibility = "visible";
-      usersPage.style.visibility = "hidden";
-      transactionPage.style.visibility = "hidden";
+      overviewPage.style.display = "none";
+      devicesPage.style.display = "inline-block";
+      usersPage.style.display = "none";
+      transactionPage.style.display = "none";
       pagelable.innerText = "Devices";
-      break;
-    case "graph":
-      closeSidebar();
-      overviewPage.style.visibility = "hidden";
-      graphPage.style.visibility = "visible";
-      devicesPage.style.visibility = "hidden";
-      usersPage.style.visibility = "hidden";
-      transactionPage.style.visibility = "hidden";
-      pagelable.innerText = "Graph";
-      break;
-    case "users":
-      closeSidebar();
-      overviewPage.style.visibility = "hidden";
-      graphPage.style.visibility = "hidden";
-      devicesPage.style.visibility = "hidden";
-      usersPage.style.visibility = "visible";
-      transactionPage.style.visibility = "hidden";
-      pagelable.innerText = "Users";
+	  dashboardBtn.classList.remove('active');
+	  devicesBtn.classList.add('active');
+	  transactionsBtn.classList.remove('active');
       break;
     case "transactions":
-      closeSidebar();
-      overviewPage.style.visibility = "hidden";
-      graphPage.style.visibility = "hidden";
-      devicesPage.style.visibility = "hidden";
-      usersPage.style.visibility = "hidden";
-      transactionPage.style.visibility = "visible";
+      overviewPage.style.display = "none";
+      devicesPage.style.display = "none";
+      usersPage.style.display = "none";
+      transactionPage.style.display = "inline-block";
       pagelable.innerText = "Transactions";
+	  dashboardBtn.classList.remove('active');
+	  devicesBtn.classList.remove('active');
+	  transactionsBtn.classList.add('active');
       break;
     default:
-      document.location.hash = "overview";
+      document.location.hash = "dash";
       break;
   }
 };

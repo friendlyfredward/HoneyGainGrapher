@@ -1,29 +1,20 @@
 .header {
-    font-size: 20px;
-    letter-spacing: .005em;
     box-sizing: border-box;
-    font-weight: 400;
     display: flex;
     align-items: center;
     flex-direction: row;
     width: 100%;
     height: 64px;
     background-color: teal;
-    position: absolute;
-    left: 0px;
-    top: 0px;
 }
-.pagelable {
-    font-size: inherit;
-    font-weight: inherit;
-    margin: inherit;
+.pageLabel {
     color: white;
+	font-size: 24px;
+	font-weight: 400;
+	user-select: none;
+	padding-left: 12px;
 }
-.pagebutton{
-    background-color: #097479;
-    margin: inherit;
-    border-style:hidden;
-}
+
 .menu{
     fill: white;
 }
@@ -31,9 +22,13 @@
     padding-left: 30px;
 }
 body{
-    background-color: black;
+    background-color: #f3f6f8;
     font-size: 15px;
-    font-family: "Monda"
+    font-family: Manrope, sans-serif;
+	margin: 0;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
 }
 input[type=text], input[type=password] {
     width: 100%;
@@ -65,63 +60,7 @@ input[type=text], input[type=password] {
     top:100px;
     margin-left:-150px;
 }
-.card1{
-    background-color: #303030;
-    position: absolute;
-    top:  75px;
-    margin: auto;
-    border: 3px solid wheat;
-    left: 20px;
-}
-.card1_sub2{
-    background-color: #303030;
-    position: absolute;
-    top:  380px;
-    margin: auto;
-    border: 3px solid wheat;
-    left: 20px;
-}
-.card2{
-    background-color: #303030;
-    position: absolute;
-    top:  75px;
-    margin: auto;
-    border: 3px solid wheat;
-    left: 340px;
-}
-.card2_sub1{
-    background-color: #303030;
-    position: absolute;
-    top:  75px;
-    margin: auto;
-    border: 3px solid wheat;
-    left: 340px;
-}
 
-.card2_sub2{
-    background-color: #303030;
-    position: absolute;
-    top:  430px;
-    margin: auto;
-    border: 3px solid wheat;
-    left: 340px;
-}
-.card3{
-    background-color: #303030;
-    position: absolute;
-    top:  75px;
-    margin: auto;
-    border: 3px solid wheat;
-    left: 660px;
-}
-.card3_sub2{
-    background-color: #303030;
-    position: absolute;
-    top:  310px;
-    margin: auto;
-    border: 3px solid wheat;
-    left: 660px;
-}
 .card4{
     background-color: #303030;
     position: absolute;
@@ -132,65 +71,116 @@ input[type=text], input[type=password] {
     width: 900px;
     height: auto;
 }
-.cardLabel {
-    font-size: 120%;
-	width: 236px;
-	line-height: 5px;
-	padding: 32px;  
-    background-color:#097479;
-    color: white;
+
+.card {
+	background-color: white;
+    border-radius: 8px;
+    box-shadow: rgba(92, 97, 97, 0.1) 0px 3px 20px 0px;
+	width: calc(33.33% - 11px);
+	box-sizing: border-box;
+	padding: 24px 28px;
+	float: left;
+	margin: 0 16px 16px 0;
 }
-.cardLabel2{
-    font-size: 120%;
-	width: 836px;
-	line-height: 5px;
-	padding: 32px;  
-    background-color:#097479;
-    color: white;
+
+.label {
+	font-family: Manrope, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: rgb(168, 179, 191);
+	line-height: 1;
 }
-.innerCardLabel1{
-    font-size: 180%;
-    color: white;
-    padding-left: 10px;
+
+.subtext {
+	color: rgb(83 90 101);
+	font-family: Manrope, sans-serif;
+	font-weight: 500;
+	font-size: 20px;
 }
+
+.footer {
+    font-family: Manrope, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    color: rgb(168, 179, 191);
+    margin: 0;
+}
+
+.footer a {
+	color: rgb(1, 113, 211);
+	font-weight: 500;
+	cursor: pointer;
+	user-select: none;
+}
+
+.credits {
+	position: relative;
+	top: 3.5px;
+	left: 4px;
+}
+
 .innerCardText1{
-    font-size: 300%;
-    color: white;
-    padding-left: 10px;
+    font-size: 48px;
+	line-height: 1;
+    color: rgb(46, 54, 67);
+	font-family: Manrope, sans-serif;
+	font-weight: 700;
+	margin-right: 6px;
 }
-.innerCardText2{
-    color: white;
-    padding-left: 10px;
+
+.page {
+	padding: 16px;
+	box-sizing: border-box;
+	width: calc(100% - 70px);
+    height: calc(100% - 64px);
+    overflow: auto;
 }
 
 .menuSidebar{
-    position: absolute;
-    top: 64px;
-    width: 0px;
-    background-color: #303030;
+    width: 70px;
+    background-color: rgb(46, 54, 67);
     height: 100%;
     left: 0;
-    visibility: hidden;
+	padding-top:8px;
+	box-sizing: border-box;
+	float: left;
 }
 
 .menuItem{
     font-size: 150%;
     color: white;
-    border: 3px solid aqua;
+	transition: 100ms;
+	text-align: center;
+	cursor: pointer;
+	user-select: none;
+	padding: 8px 0;
+	transition: 100ms;
+	fill: #fff;
+	stroke: #fff;
 }
 .menuItem:hover{
-    background-color: #656565;
+    background-color: rgba(255, 255, 255, 0.05);
 }
 
-#loadingGif{
-    position: absolute;
-    top: 150px;
-    left: 250px;
+.menuItem.active {
+	background-color: rgba(255, 255, 255, 0.1);
+	fill: #FBD63B;
+	stroke: #FBD63B;
 }
+
 .graph{
-    position: absolute;
-    top: 75px;
     background-color: white;
+	border-radius: 8px;
+	box-shadow: rgba(92, 97, 97, 0.1) 0px 3px 20px 0px;
+	max-width: 932px;
+	width: 100%;
+	height: 480px;
+}
+
+.dashCards{
+	max-width: 932px;
+	display:table;
+	width:100%
 }
 
 

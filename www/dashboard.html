@@ -2,71 +2,78 @@
 <html>
 <head>
   <link rel="stylesheet" href="styles.css?v=2">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+  <title>Honeygain Stats</title>
+  <link rel="shortcut icon" href="http://dashboard.honeygain.com/favicon.ico">
 </head>
 <body>
-<div class="header"> 
-    
-    <div class="spacer1"></div>
-    <button class="pagebutton" type="button" onclick="openSidebar()">
-        <div class="menu">
-             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                <path d="M3 18h18v-2H3v2z"></path>
-                <path d="M3 13h18v-2H3v2z"></path>
-                <path d="M3 6v2h18V6H3z"></path>
-            </svg>
-        </div>
-    </button>
-    <h1 class="pagelable" id="pagelable">Overview</h1>
+<div class="header">
+	<svg width="70" height="37" viewBox="0 0 143 107" class="logo"><g fill="none" fill-rule="evenodd"><path fill="#FBD63B" d="M136.328764 13.519882C132.603764 12.546882 128.807764 14.361882 127.144764 17.667882 117.092764 18.948882 108.231764 24.063882 101.230764 32.710882 100.334764 33.817882 99.5217644 34.923882 98.7737644 36.014882 99.4747644 27.634882 102.587764 20.781882 108.051764 15.561882 109.794764 16.186882 111.759764 16.218882 113.623764 15.502882 117.757764 13.915882 119.821764 9.27888205 118.234764 5.14488205 116.647764 1.01188205 112.009764-1.05211795 107.876764.534882048 104.281764 1.91488205 102.255764 5.60188205 102.830764 9.25788205 95.4087644 16.155882 91.1887644 25.477882 90.5387644 36.583882 89.9497644 46.623882 92.4997644 54.585882 92.6087644 54.919882L100.376764 52.398882C100.370764 52.381882 100.235764 51.950882 100.043764 51.193882 100.341764 50.320882 102.659764 43.849882 107.735764 37.655882 113.290764 30.877882 119.994764 26.924882 127.713764 25.832882 128.766764 27.356882 130.343764 28.528882 132.275764 29.033882 136.559764 30.152882 140.939764 27.586882 142.058764 23.302882 143.178764 19.018882 140.612764 14.638882 136.328764 13.519882M42.5743644 51.184482C37.7993644 52.558482 34.0563644 55.765482 31.8663644 59.816482L7.74336442 100.578482 52.4023644 85.353482C61.8383644 82.639482 67.2863644 72.790482 64.5733644 63.354482 61.8583644 53.919482 52.0103644 48.470482 42.5743644 51.184482"></path><path fill="#FBD63B" d="M13.4127644,46.578982 C12.7197644,88.594982 49.3817644,103.995982 93.1727644,103.995982 C113.489764,103.995982 129.959764,87.524982 129.959764,67.207982 C129.959764,46.890982 113.489764,30.420982 93.1727644,30.420982 C72.8547644,30.420982 13.6937644,29.515982 13.4127644,46.578982"></path><path fill="#1F555A" d="M90.0992644,57.767982 C90.0992644,63.335982 94.6132644,67.850982 100.182264,67.850982 C105.749264,67.850982 110.264264,63.335982 110.264264,57.767982 C110.264264,52.199982 105.749264,47.685982 100.182264,47.685982 C94.6132644,47.685982 90.0992644,52.199982 90.0992644,57.767982"></path><path fill="#FFF" d="M94.3887644,55.213282 C94.3887644,57.001282 95.8387644,58.451282 97.6267644,58.451282 C99.4147644,58.451282 100.864764,57.001282 100.864764,55.213282 C100.864764,53.424282 99.4147644,51.975282 97.6267644,51.975282 C95.8387644,51.975282 94.3887644,53.424282 94.3887644,55.213282"></path><path fill="#1F555A" d="M94.4498644,98.015982 C92.3488644,98.015982 90.2888644,97.977982 88.2628644,97.910982 C77.7148644,88.551982 72.3908644,78.527982 72.4618644,68.104982 C72.5838644,50.170982 88.3948644,36.584982 88.5538644,36.449982 L88.5068644,36.392982 C89.4808644,36.393982 90.4288644,36.395982 91.3158644,36.396982 C92.4368644,36.398982 93.4848644,36.400982 94.4498644,36.400982 C111.436864,36.400982 125.256864,50.221982 125.256864,67.208982 C125.256864,84.195982 111.436864,98.015982 94.4498644,98.015982 M18.1118644,45.672982 C18.6168644,45.001982 22.5798644,40.784982 43.6408644,38.301982 C50.2378644,37.523982 57.2788644,37.060982 64.1998644,36.783982 C57.7288644,41.811982 50.4488644,49.462982 47.1578644,59.997982 C44.1288644,69.697982 45.0228644,80.080982 49.7698644,90.963982 C41.7358644,87.833982 35.1198644,83.687982 30.0838644,78.568982 C21.9538644,70.302982 17.9258644,59.235982 18.1118644,45.672982 M54.9378644,62.481982 C58.6018644,50.681982 68.8908644,42.982982 74.9538644,39.327982 C69.8878644,46.076982 64.3768644,56.132982 64.2958644,68.048982 C64.2258644,78.259982 68.1458644,87.973982 75.9338644,97.036982 C70.4998644,96.428982 65.4068644,95.536982 60.6688644,94.370982 C53.8898644,82.813982 51.9548644,72.092982 54.9378644,62.481982 M94.4498644,28.234982 C92.3858644,28.234982 89.9388644,28.225982 87.2088644,28.225982 C61.4738644,28.225982 10.2188644,29.008982 9.94886442,45.352982 C9.21486442,89.865982 48.0558644,106.182982 94.4498644,106.182982 C115.973864,106.182982 133.423864,88.732982 133.423864,67.208982 C133.423864,45.683982 115.973864,28.234982 94.4498644,28.234982"></path><path fill="#FBD63B" d="M90.3751644,30.897782 L42.5601644,71.535782 C38.0681644,75.664782 31.9961644,78.064782 25.4211644,77.723782 C12.4321644,77.047782 2.44816442,65.970782 3.12316442,52.980782 C3.79816442,39.991782 14.8751644,30.008782 27.8651644,30.683782 L90.3751644,30.897782 Z"></path><path fill="#1F555A" d="M26.0357644,28.122882 C12.2647644,28.122882 0.75776442,38.917882 0.0357644197,52.829882 C-0.71123558,67.201882 10.3337644,79.456882 24.7057644,80.204882 C25.1637644,80.227882 25.6207644,80.239882 26.0747644,80.239882 C32.8197644,80.239882 39.0117644,77.638882 43.6687644,73.358882 L96.5707644,28.395882 L27.4097644,28.158882 C26.9497644,28.134882 26.4917644,28.122882 26.0357644,28.122882 M26.0357644,36.289882 L26.0357644,36.289882 C26.3507644,36.289882 26.6697644,36.297882 26.9857644,36.314882 L27.1837644,36.324882 L27.3817644,36.325882 L74.4407644,36.486882 L38.3797644,67.135882 L38.2587644,67.237882 L38.1417644,67.345882 C34.8257644,70.393882 30.5387644,72.072882 26.0747644,72.072882 C25.7617644,72.072882 25.4437644,72.064882 25.1297644,72.047882 C15.2777644,71.536882 7.67976442,63.104882 8.19076442,53.252882 C8.68476442,43.741882 16.5237644,36.289882 26.0357644,36.289882"></path></g></svg>
+    <h1 class="pageLabel" id="pagelable"></h1>
+</div>
+
+
+<div class="menuSidebar" id="menuSidebar">
+    <div class="menuItem" id="dashboardBtn" onclick="document.location.href='#dash';closeSidebar()"><svg width="17" height="19" viewBox="0 0 18 20"><path stroke="none" d="M9,2.15470054 L2.20577137,6.07735027 L2.20577137,13.9226497 L9,17.8452995 L15.7942286,13.9226497 L15.7942286,6.07735027 L9,2.15470054 Z M9.5,0.133974596 L17.2942286,4.6339746 C17.6036297,4.81260739 17.7942286,5.14273441 17.7942286,5.5 L17.7942286,14.5 C17.7942286,14.8572656 17.6036297,15.1873926 17.2942286,15.3660254 L9.5,19.8660254 C9.19059892,20.0446582 8.80940108,20.0446582 8.5,19.8660254 L0.705771366,15.3660254 C0.396370289,15.1873926 0.205771366,14.8572656 0.205771366,14.5 L0.205771366,5.5 C0.205771366,5.14273441 0.396370289,4.81260739 0.705771366,4.6339746 L8.5,0.133974596 C8.80940108,-0.0446581987 9.19059892,-0.0446581987 9.5,0.133974596 Z"></path></svg></div>
+    <div class="menuItem" id="devicesBtn" onclick="document.location.href='#devices'; closeSidebar()"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="19" viewBox="-1 -1 23 20"><g fill="none" fill-rule="evenodd" stroke-linejoin="round" stroke-width="2"><polygon points="10.424 0 15.253 2.714 15.253 8.143 10.424 10.857 5.595 8.143 5.595 2.714"></polygon><polygon points="5.576 8.143 10.405 10.857 10.405 16.286 5.576 19 .747 16.286 .747 10.857"></polygon><polygon points="15.576 8.143 20.405 10.857 20.405 16.286 15.576 19 10.747 16.286 10.747 10.857"></polygon></g></svg></div>
+    <div class="menuItem" id="transactionsBtn" onclick="document.location.href='#transactions'; closeSidebar()"><svg width="20" height="18" viewBox="0 0 24 18"><path stroke="none" d="M22.6666667,1.96320666 L22.6666667,11.427689 C22.6653986,12.5114166 21.7801042,13.3896377 20.6876481,13.3908957 L19.2425042,13.3908957 L19.2425042,11.2815899 L20.5380711,11.2815899 L20.5380711,2.10474016 L5.61258883,2.10474016 L5.61258883,3.52464079 L3.48629442,3.52464079 L3.48629442,1.96320666 C3.4875625,0.879479051 4.37285692,0.00125795555 5.46531303,0 L20.6876481,0 C21.7801042,0.00125795555 22.6653986,0.879479051 22.6666667,1.96320666 Z M3.06579353e-16,15.1166913 L3.06579353e-16,6.60641869 C0.00253453567,5.56770907 0.85139931,4.72664725 1.89847716,4.72539278 L15.8528596,4.72539278 C16.9008339,4.72665061 17.7500687,5.56910027 17.7513367,6.60870149 L17.7513367,15.1166913 C17.7500687,16.1562925 16.9008339,16.9987422 15.8528596,17 L1.89847716,17 C0.850502834,16.9987422 0.0012679679,16.1562925 3.06579353e-16,15.1166913 Z M2.03884941,12.4663623 C2.68517584,12.3833105 3.33614768,12.5814085 3.82434727,13.009709 C4.31254685,13.4380095 4.59033162,14.0547156 4.58626058,14.701222 C4.58553005,14.7912953 4.57938264,14.8812452 4.5678511,14.9705922 L13.1742809,14.9705922 C13.0842564,14.2810797 13.3218402,13.5891571 13.8174313,13.0975257 C14.3130224,12.6058943 15.0105179,12.3702087 15.7055838,12.4595139 L15.7055838,9.24989929 C15.0105179,9.33920451 14.3130224,9.10351892 13.8174313,8.61188752 C13.3218402,8.12025612 13.0842564,7.42833347 13.1742809,6.738821 L4.5678511,6.738821 C4.57933945,6.82817214 4.58548669,6.91811948 4.58626058,7.00819122 C4.59233799,7.65588781 4.31541988,8.274469 3.82696736,8.70430459 C3.33851483,9.13414017 2.6863791,9.33312134 2.03884941,9.24989929 L2.03884941,12.4663623 Z M8.87566836,13.3566537 C10.2736683,13.3566537 11.4069712,12.2324056 11.4069712,10.8455754 C11.4069712,9.45874516 10.2736683,8.33449711 8.87566836,8.33449711 C7.47766838,8.33449711 6.34436548,9.45874516 6.34436548,10.8455754 C6.34375481,11.5119502 6.61017527,12.1512394 7.08495285,12.6226518 C7.55973043,13.0940641 8.2039262,13.3589368 8.87566836,13.3589365 L8.87566836,13.3566537 Z"></path></svg></div>
 </div>
 
 <div class="page" id="overviewPage">
-    <div class="card1" id="balanceCard">
-        <div class="cardLabel">Current Balance</div>
-        <div class="innerCardText1" id="currentBalanceUSD"> Loading...</div>
-        <div class="innerCardText1" id="currentBalance"> Loading...</div>
-        <div class="innerCardText1" id="currentBalanceGB"> Loading...</div>
-    </div>
-    <div class="card1_sub2" id="payoutCard">
-        <div class="cardLabel">Payout</div>
-        <div class="innerCardLabel1"> Last Payout:</div>
-        <div class="innerCardText1" id="lastPayout"> N/A</div>
-        <div class="innerCardLabel1"> Est. Next Payout: </div>
-        <div class="innerCardText1" id="nextPayout"> Loading...</div>
-    </div>
-    <div class="card2_sub1" id="lastHourCard">
-        <div class="cardLabel">Last Hour</div>
-        <div class="innerCardText1" id="lastHourBalanceUSD"> Loading...</div>
-        <div class="innerCardText1" id="lastHourBalance"> Loading...</div>
-        <div class="innerCardLabel1"> per Day:</div>
-        <div class="innerCardText1" id="lastHourRate"> Loading...</div>
-    </div>
-    <div class="card2_sub2" id="last7Card">
-        <div class="cardLabel">Last 7 Days</div>
-        <div class="innerCardText1" id="last7BalanceUSD"> Loading...</div>
-        <div class="innerCardText1" id="last7Balance"> Loading...</div>
-        <div class="innerCardLabel1"> per Day:</div>
-        <div class="innerCardText1" id="last7Rate"> Loading...</div>
-    </div>
-    <div class="card3" id="toHourCard">
-        <div class="cardLabel">Gathered This Hour</div>
-        <div class="innerCardText1" id="toHourBalanceUSD"> Loading...</div>
-        <div class="innerCardText1" id="toHourBalance"> Loading...</div>
-    </div>
-    <div class="card3_sub2" id="toDayCard">
-        <div class="cardLabel">Gathered Today</div>
-        <div class="innerCardText1" id="toDayBalanceUSD"> Loading...</div>
-        <div class="innerCardText1" id="toDayBalance"> Loading...</div>
-        <div class="innerCardLabel1"> per Hour:</div>
-        <div class="innerCardText1" id="toDayRate"> Loading...</div>
-    </div>
+
+	<div class="dashCards">
+
+		<div class="card " id="balanceCard">
+			<div class="label">Current balance:</div>
+			<span class="innerCardText1" id="currentBalanceUSD">$0.00</span>
+			<span class="subtext" id="currentBalance">0</span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="-1 0 23 20" class="credits"><g fill="none" fill-rule="evenodd" stroke="#FBD63B" stroke-linejoin="round" stroke-width="2"><polygon points="10.424 0 15.253 2.714 15.253 8.143 10.424 10.857 5.595 8.143 5.595 2.714"></polygon><polygon points="5.576 8.143 10.405 10.857 10.405 16.286 5.576 19 .747 16.286 .747 10.857"></polygon><polygon points="15.576 8.143 20.405 10.857 20.405 16.286 15.576 19 10.747 16.286 10.747 10.857"></polygon></g></svg>
+		</div>
+		
+		<div class="card" id="toDayCard">
+			<div class="label">Today so far:</div>
+			<span class="innerCardText1" id="toDayBalanceUSD"> $0.00</span>
+			<span class="subtext" id="toDayBalance"> 0</span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="-1 0 23 20" class="credits"><g fill="none" fill-rule="evenodd" stroke="#FBD63B" stroke-linejoin="round" stroke-width="2"><polygon points="10.424 0 15.253 2.714 15.253 8.143 10.424 10.857 5.595 8.143 5.595 2.714"></polygon><polygon points="5.576 8.143 10.405 10.857 10.405 16.286 5.576 19 .747 16.286 .747 10.857"></polygon><polygon points="15.576 8.143 20.405 10.857 20.405 16.286 15.576 19 10.747 16.286 10.747 10.857"></polygon></g></svg>
+		</div>
+		
+		<div class="card" id="toHourCard" style="margin-right:0;">
+			<div class="label">This hour so far:</div>
+			<span class="innerCardText1" id="toHourBalanceUSD">$0.00</span>
+			<span class="subtext" id="toHourBalance">0</span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="-1 0 23 20" class="credits"><g fill="none" fill-rule="evenodd" stroke="#FBD63B" stroke-linejoin="round" stroke-width="2"><polygon points="10.424 0 15.253 2.714 15.253 8.143 10.424 10.857 5.595 8.143 5.595 2.714"></polygon><polygon points="5.576 8.143 10.405 10.857 10.405 16.286 5.576 19 .747 16.286 .747 10.857"></polygon><polygon points="15.576 8.143 20.405 10.857 20.405 16.286 15.576 19 10.747 16.286 10.747 10.857"></polygon></g></svg>
+		</div>
+		
+		<div class="card" id="payoutCard" style="clear:both;">
+			<div class="label"> Last Payout:</div>
+			<div class="innerCardText1" id="lastPayout"> N/A</div>
+			<div class="label" style="padding-top: 16px;"> Est. Next Payout: </div>
+			<div class="innerCardText1" id="nextPayout">...</div>
+		</div>
+		
+		<div class="card" id="last7Card">
+			<div class="label">Last 7 days:</div>
+			<span class="innerCardText1" id="last7BalanceUSD">$0.00</span>
+			<span class="subtext" id="last7Balance">0</span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="-1 0 23 20" class="credits"><g fill="none" fill-rule="evenodd" stroke="#FBD63B" stroke-linejoin="round" stroke-width="2"><polygon points="10.424 0 15.253 2.714 15.253 8.143 10.424 10.857 5.595 8.143 5.595 2.714"></polygon><polygon points="5.576 8.143 10.405 10.857 10.405 16.286 5.576 19 .747 16.286 .747 10.857"></polygon><polygon points="15.576 8.143 20.405 10.857 20.405 16.286 15.576 19 10.747 16.286 10.747 10.857"></polygon></g></svg>
+			<div class="label" style="padding-top: 16px;">Daily average:</div>
+			<div class="innerCardText1" id="last7Rate">$0.00</div>
+		</div>
+		
+		<div class="card" id="lastHourCard" style="margin-right:0;">
+			<div class="label">Previous hour:</div>
+			<span class="innerCardText1" id="lastHourBalanceUSD"> $0.00</span>
+			<span class="subtext" id="lastHourBalance"> 0</span><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="-1 0 23 20" class="credits"><g fill="none" fill-rule="evenodd" stroke="#FBD63B" stroke-linejoin="round" stroke-width="2"><polygon points="10.424 0 15.253 2.714 15.253 8.143 10.424 10.857 5.595 8.143 5.595 2.714"></polygon><polygon points="5.576 8.143 10.405 10.857 10.405 16.286 5.576 19 .747 16.286 .747 10.857"></polygon><polygon points="15.576 8.143 20.405 10.857 20.405 16.286 15.576 19 10.747 16.286 10.747 10.857"></polygon></g></svg>
+			<div class="label" style="padding-top: 16px;">Earning rate:</div>
+			<span class="innerCardText1" id="lastHourRate"> $0.00<font size="5">/day</font></span>
+		</div>
+		
+	</div>
+	
+	<object class="graph" data="HoneyGainDevicesDelta_plot.html">
+    </object>
+    
+    <p class="footer"><a onclick="refresh();">Refresh</a><span id="updateInfo"></span></p>
+	
 </div>
 
-<div class="page" id="graphPage">
-    <object class="graph" onload="loadingGif.style.visibility='hidden'" width="1500" height="700" data="HoneyGainDevicesDelta_plot.html">
-        failed to load graph
-    </object>
-    <img id="loadingGif" src="loading.gif" alt="loading">
-</div>
 
 <div class="page" id="devicesPage">
     <div class="card1" id="diviceOverviewCard">
@@ -114,7 +121,6 @@
     <div class="card1" id="userOverviewCard">
         <div class="cardLabel">User Overview</div>
         <div class="innerCardLabel1">Active Users:</div>
-        <div class="innerCardText1" id="hgActiveUsers">Loading...</div>
         <div class="innerCardLabel1">Earning Users:</div>
         <div class="innerCardText1" id="earningUsers">Loading...</div>
         <div class="innerCardLabel1">Avg. User Earning:</div>
@@ -180,13 +186,6 @@
     </div>
 </div>
 
-<div class="menuSidebar" id="menuSidebar">
-    <div class="menuItem" onclick="document.location.href='dashboard.html#overview';closeSidebar()">Overview </div>
-    <div class="menuItem" onclick="document.location.href='dashboard.html#graph';   closeSidebar()">Graph </div>
-    <div class="menuItem" onclick="document.location.href='dashboard.html#devices'; closeSidebar()">Devices </div>
-    <div class="menuItem" onclick="document.location.href='dashboard.html#users'; closeSidebar()">Users </div>
-    <div class="menuItem" onclick="document.location.href='dashboard.html#transactions'; closeSidebar()">Transactions </div>
-</div>
 
 <div class="popup">
 
