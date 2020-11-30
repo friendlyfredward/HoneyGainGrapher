@@ -77,43 +77,38 @@
 
 <div class="page" id="devicesPage">
     <div class="card1" id="diviceOverviewCard">
-        <div class="cardLabel">Device Overview</div>
-        <div class="innerCardLabel1">HG Active Devices:</div>
-        <div class="innerCardText1" id="hgactiveDevices">Loading...</div>
-        <div class="innerCardLabel1">Active Devices:</div>
-        <div class="innerCardText1" id="activeDevices">Loading...</div>
-        <div class="innerCardLabel1">Earning Devices:</div>
-        <div class="innerCardText1" id="earningDevices">Loading...</div>
-        <div class="innerCardLabel1">Avg. Devices Earning:</div>
-        <div class="innerCardText1" id="earningPerDevice">Loading...</div>
-        <div class="innerCardLabel1">USD</div>
+        <div class="label">Active:</div>
+        <div class="innerCardText1" id="activeDevices">Loading...</div><br>
+        <div class="label">Earning:</div>
+        <div class="innerCardText1" id="earningDevices">Loading...</div><br>
+        <div class="label">Average Per-Device Earnings:</div>
+        <div class="innerCardText1" id="earningPerDevice">$0.00</div><br>
         <label class="innerCardText2" for="startDate">Start date:</label>
         <input type="date" id="startDate" name="" value="0000-00-00"min="0000-00-00" max="0000-00-00" onchange="onDateChange(this.value,endDate[0].value)"><br>
         <label class="innerCardText2" for="endDate" >End date:</label>
-        <input type="date" id="endDate" name="" value="0000-00-00"min="0000-00-00" max="0000-00-00"  onchange="onDateChange(startDate[0].value,this.value)">
-    </div>
-    <div class="card4" id="deviceStuffCard">
-        <div class="cardLabel2">More Device Stuff</div>
-        <label class="innerCardText2" for="deviceDisplayMode">Display Mode:</label>
-
+        <input type="date" id="endDate" name="" value="0000-00-00"min="0000-00-00" max="0000-00-00"  onchange="onDateChange(startDate[0].value,this.value)"><br>
+		
+		<label class="innerCardText2" for="deviceDisplayMode">Display Mode:</label>
         <select id="deviceDisplayMode" onchange="updateTables()">
-          <option>Show All</option>
+          <option>Everything</option>
           <option>Hide Inactive</option>
           <option>Only Inactive</option>
           <option>Only Earning</option>
-        </select>
+        </select><br><br>
+		
+		<button class="export" onclick="exportToCsv(deviceoverviewTable)">Export To CSV</button>
+    </div>
+    <div class="card4" id="deviceStuffCard">
         <table  class="searchable sortable" id="deviceoverviewTable">
             <tr>
-                <th onclick="sortTable(deviceoverviewTable,0,0,'User',this)" >User</th>
-                <th onclick="sortTable(deviceoverviewTable,1,0,'Device',this)" >Device</th>
-                <th onclick="sortTable(deviceoverviewTable,2,1,'Credits Gained',this)" >Credits Gained</th>
-                <th onclick="sortTable(deviceoverviewTable,3,1,'Total Credits',this)">Total Credits</th>
-                <th onclick="sortTable(deviceoverviewTable,4,1,'Balance Gained',this)"  id="deviceCreditsGained">Balance Gained</th>
-                <th onclick="sortTable(deviceoverviewTable,5,1,'Total Balance',this)">Total Balance</th>
-                <th onclick="sortTable(deviceoverviewTable,6,1,'Last Earning<br>Hours Ago',this)">Last Earning<br>Hours Ago</th>
+                <th onclick="sortTable(deviceoverviewTable,0,0,'Device',this)" >Device</th>
+                <th onclick="sortTable(deviceoverviewTable,1,1,'Cr+',this)" >Cr+</th>
+                <th onclick="sortTable(deviceoverviewTable,2,1,'(Total)',this)">(Total)</th>
+                <th onclick="sortTable(deviceoverviewTable,3,1,'USD+',this)"  id="deviceCreditsGained">USD+</th>
+                <th onclick="sortTable(deviceoverviewTable,4,1,'(Total)',this)">(Total)</th>
+                <th onclick="sortTable(deviceoverviewTable,5,1,'Active',this)" id="devicesActive">Active</th>
             </tr>
         </table>
-        <button onclick="exportToCsv(deviceoverviewTable)"> Export To CSV</button>
     </div>
 </div>
 
@@ -151,38 +146,44 @@
 
 <div class="page" id="transactionPage">
     <div class="card1" id="transactionOverviewCard">
-        <div class="cardLabel">Transaction Overview</div>
-        <div class="innerCardLabel1">Payout Amount:</div>
-        <div class="innerCardText1" id="payoutAmount">Loading...</div>
-        <div class="innerCardLabel1">Earned Amount:</div>
-        <div class="innerCardText1" id="gatheredAmount">Loading...</div>
+		<div class="label">Traffic + CDN:</div>
+        <div class="innerCardText1" id="gatheredAmount">$0.00</div><br>
+		<div class="label">Referrals:</div>
+        <div class="innerCardText1" id="referralAmount">$0.00</div><br>
+		<div class="label">Honey Jar:</div>
+        <div class="innerCardText1" id="winningAmount">$0.00</div><br>
+        <div class="label">Payouts:</div>
+        <div class="innerCardText1" id="payoutAmount">$0.00</div><br>
         <label class="innerCardText2" for="startDate">Start date:</label>
         <input type="date" id="startDateTrans" name="" value="0000-00-00"min="0000-00-00" max="0000-00-00" onchange="onDateChangeTrans(this.value,endDateTrans.value)"><br>
         <label class="innerCardText2" for="endDate" >End date:</label>
-        <input type="date" id="endDateTrans" name="" value="0000-00-00"min="0000-00-00" max="0000-00-00" onchange="onDateChangeTrans(startDateTrans.value,this.value)" >
+        <input type="date" id="endDateTrans" name="" value="0000-00-00"min="0000-00-00" max="0000-00-00" onchange="onDateChangeTrans(startDateTrans.value,this.value)" ><br>
+		
+		<label class="innerCardText2" for="transactionsDisplayMode">Display Mode:</label>
+		<select id="transactionsDisplayMode" onchange="updateTransactionTable()">
+            <option>Everything</option>
+            <option>Traffic + CDN</option>
+            <option>Payouts</option>
+            <option>Coupon/Bonus</option>
+            <option>Referrals</option>
+          </select><br><br>
+		<button class="export" onclick="exportToCsv(transactionOverviewTable)">Export To CSV</button>
+		
     </div>
     <div class="card4" id="transactionStuffCard">
-        <div class="cardLabel2">More Transaction Stuff</div>
-        <label class="innerCardText2" for="transactionsDisplayMode">Display Mode:</label>
 
-        <select id="transactionsDisplayMode" onchange="updateTransactionTable()">
-            <option>Show All</option>
-            <option>Only Gathered</option>
-            <option>Only Payout</option>
-            <option>Only Coupon</option>
-            <option>Only Referral</option>
-          </select>
+        
         <table  class="searchable sortable" id="transactionOverviewTable">
             <tr>
-                <th onclick="sortTable(transactionOverviewTable,0,0,'User',this)" >Type</th>
+                <th onclick="sortTable(transactionOverviewTable,0,0,'Type',this)" >Type</th>
                 <th onclick="sortTable(transactionOverviewTable,1,1,'Amount',this)" >Amount</th>
-                <th onclick="sortTable(transactionOverviewTable,2,1,'Amount USD',this)" >Amount USD</th>
+                <th onclick="sortTable(transactionOverviewTable,2,1,'(USD)',this)" >(USD)</th>
                 <th onclick="sortTable(transactionOverviewTable,3,2,'Timestamp',this)" >Timestamp</th>
 
 
             </tr>
         </table>
-        <button onclick="exportToCsv(transactionOverviewTable)"> Export To CSV</button>
+        
     </div>
 </div>
 

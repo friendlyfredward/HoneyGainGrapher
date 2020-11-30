@@ -132,6 +132,8 @@ function parseRes(res) {
 }
 function updateTransactionTable() {
   var gatheredAmountNum = 0;
+  var referralAmountNum = 0;
+  var winningAmountNum = 0;
   var payoutAmountNum = 0;
   var len = transactionOverviewTable.rows.length - 1;
   for (var x = 0; x < len; x++) {
@@ -140,7 +142,9 @@ function updateTransactionTable() {
   for (var transaction of transactions) {
     var transactionRow = transactionOverviewTable.insertRow(1);
     var typeMap = {
-      earnings: { displayName: "Gathered", show: [1, 1, 0, 0, 0] },
+      traffic_earnings: { displayName: "Traffic Earnings", show: [1, 1, 0, 0, 0] },
+	  earnings: { displayName: "Traffic Earnings", show: [1, 1, 0, 0, 0] },
+	  cdn_earnings: { displayName: "Content Delivery", show: [1, 1, 0, 0, 0] },
       payout_reservation: {
         displayName: "Payout Reservation",
         show: [1, 0, 1, 0, 0],
@@ -151,6 +155,7 @@ function updateTransactionTable() {
         show: [1, 0, 1, 0, 0],
       },
       coupon: { displayName: "Coupon", show: [1, 0, 0, 1, 0] },
+	  winning: { displayName: "Honey Jar", show: [1, 0, 0, 1, 0] },
       referral: { displayName: "Referral", show: [1, 0, 0, 0, 1] },
     };
 
@@ -172,9 +177,21 @@ function updateTransactionTable() {
     transactionRow.insertCell(2).innerText =
       "$" + (transaction.amount_usd_cents / 100).toFixed(2);
 
-    if (transaction.type == "earnings") {
+    if (transaction.type == "earnings" || transaction.type == "traffic_earnings" || transaction.type == "cdn_earnings") {
       gatheredAmountNum = (
         parseFloat(gatheredAmountNum) +
+        parseFloat(transaction.amount_usd_cents) / 100
+      ).toFixed(2);
+    }
+	if (transaction.type == "referral") {
+      referralAmountNum = (
+        parseFloat(referralAmountNum) +
+        parseFloat(transaction.amount_usd_cents) / 100
+      ).toFixed(2);
+    }
+	if (transaction.type == "winning") {
+      winningAmountNum = (
+        parseFloat(winningAmountNum) +
         parseFloat(transaction.amount_usd_cents) / 100
       ).toFixed(2);
     }
@@ -191,6 +208,8 @@ function updateTransactionTable() {
     transactionRow.insertCell(3).innerText = transaction.created_at;
   }
   gatheredAmount.innerText = "$" + gatheredAmountNum;
+  referralAmount.innerText = "$" + referralAmountNum;
+  winningAmount.innerText = "$" + winningAmountNum;
   payoutAmount.innerText = "$" + Math.abs(payoutAmountNum);
 }
 function showTransactionDetails() {}
@@ -235,17 +254,16 @@ function updateTables() {
     var userCell = deviceRow.insertCell(0);
     userCell.innerText = username;
 
-    var deviceCell = deviceRow.insertCell(1);
 
-    var creditsGainedCell = deviceRow.insertCell(2);
+    var creditsGainedCell = deviceRow.insertCell(1);
     creditsGainedCell.innerText = (
       deviceBalanceEnd[id].credits - deviceOverviewInitial[id]
-    ).toFixed(2);
+    ).toFixed(1);
 
-    var totalCreditsCell = deviceRow.insertCell(3);
+    var totalCreditsCell = deviceRow.insertCell(2);
     totalCreditsCell.innerText = deviceBalanceEnd[id].credits.toFixed(2);
 
-    var balanceGainedCell = deviceRow.insertCell(4);
+    var balanceGainedCell = deviceRow.insertCell(3);
     balanceGainedCell.innerText =
       "$" +
       (
@@ -253,11 +271,11 @@ function updateTables() {
         1000
       ).toFixed(2);
 
-    var totalBalanceCell = deviceRow.insertCell(5);
+    var totalBalanceCell = deviceRow.insertCell(4);
     totalBalanceCell.innerText =
       "$" + (deviceBalanceEnd[id].credits / 1000).toFixed(2);
 
-    var lastEarningCell = deviceRow.insertCell(6);
+    var lastEarningCell = deviceRow.insertCell(5);
 
     var tSplit = username.split("*");
     var thisLastEarning = (
@@ -300,9 +318,9 @@ function updateTables() {
         totalCredits: deviceBalanceEnd[id],
       });
     } //end follows the pool format: #<user>*<device>*
-    lastEarningCell.innerText = thisLastEarning;
+    lastEarningCell.innerText = thisLastEarning + "h ago";
     lastEarningCell.style =
-      thisLastEarning >= 24 ? "background-color: #ff0000;" : "";
+      thisLastEarning >= 24 ? "color: #ff0000;" : "";
     //display mode hide not earning
     if (
       deviceDisplayMode.selectedIndex == 3 &&
@@ -326,14 +344,13 @@ function updateTables() {
   }
 
   //overview card
-  earningPerDevice.innerText = (
+  earningPerDevice.innerText = "$" + (
     earningsTotal /
     earningDevicesNum /
     1000
-  ).toFixed(3);
-  hgactiveDevices.innerText = hgactiveDevicesNum;
-  activeDevices.innerText = activeDevicesNum;
-  earningDevices.innerText = earningDevicesNum;
+  ).toFixed(2);
+  activeDevices.innerText = activeDevicesNum + "/" + hgactiveDevicesNum;
+  earningDevices.innerText = earningDevicesNum + "/" + hgactiveDevicesNum;
 
   var earningUserNum = 0;
   var hgActiveUsersNum = 0;
@@ -342,12 +359,12 @@ function updateTables() {
   earningPerUser.innerText = (earningsTotal / earningUserNum / 1000).toFixed(3);
   sortTable(
     deviceoverviewTable,
-    2,
+    5,
     true,
-    "Balance Gained",
-    deviceCreditsGained
+    "Active",
+    devicesActive
   );
-  sortTable(useroverviewTable, 4, true, "Balance Gained", userCreditsGained);
+  sortTable(useroverviewTable, 4, true, "Cr+", userCreditsGained);
 }
 function calcNextPayout() {
   if (balUSD != undefined && nowReceived) {
@@ -408,8 +425,8 @@ function onDateChange(sdate, edate) {
     endtime: new Date(endDateVal).getTime() / 1000,
     echo: "enddate",
   });
-  activeDevices.innerText = "Loaging...";
-  earningDevices.innerText = "Loaging...";
+  activeDevices.innerText = "Loading...";
+  earningDevices.innerText = "Loading...";
 }
 function onDateChangeTrans(sdate, edate) {
   getData({
