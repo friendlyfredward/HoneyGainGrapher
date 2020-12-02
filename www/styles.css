@@ -213,6 +213,5 @@ table {
 	font-size: 18px;
   }
   th {font-weight: 600; cursor: pointer; user-select: none;}
-  tr:nth-child(even) {
-    background-color: #f0f0f0;
-  }
+  
+  tr { border-bottom: 1px solid #F5F5F5; }
